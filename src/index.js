@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { DataContext } from './dataContext';
+import { DataProvider } from './dataContext';
 import reportWebVitals from './reportWebVitals';
 import createMockServer from './server/server';
 
 createMockServer();
 ReactDOM.render(
   <React.StrictMode>
-    <DataContext>
+    <DataProvider>
     <App />
-    </DataContext>
+    </DataProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
