@@ -6,14 +6,11 @@ export const NavBar=()=>{
         <div>
             <nav className="navigation">
 	            <div className="brand">
-                <div className="brand-title ">PeachCart</div>
+                <Link to = "./">
+                <div className="brand-title link">PeachCart</div>
+                </Link>
                 </div>
                 <ul className="list-non-bullet nav-pills"> 
-    	            <li className="display-inline">
-                    <Link to = "./">
-                        <i className=" fa-2x fab fa-product-hunt link"></i>
-                    </Link>
-                    </li>
                     <li className="display-inline">
                     <Link to = "./cart">   
                         <i className="fa-2x fas fa-shopping-cart link"></i>
