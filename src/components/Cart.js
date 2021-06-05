@@ -17,7 +17,8 @@ export const Cart=()=>{
             <button className="danger button" onClick={()=>dispatch({type:"DEC_QTY",payload:product.id})}>-</button>
             {product.qty}
             <button className="success button" onClick={()=>dispatch({type:"INC_QTY",payload:product.id})}>+</button>
-            <button className="danger button"onClick={()=>dispatch({type:"REMOVE_FROM_CART",payload:product.id})}>Remove from Cart</button>
+            <button className="danger button" onClick={()=>dispatch({type:"REMOVE_FROM_CART",payload:product.id})}>Remove from Cart</button>
+            <button className="success button" onClick={()=>dispatch({type:"MOVE_TO_WISHLIST",payload:product})}>MOVE TO WISHLIST</button>
         </div>
             )}
         </div>
