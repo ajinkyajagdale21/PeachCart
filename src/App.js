@@ -3,7 +3,8 @@ import {NavBar} from './components/navBar';
 import {Cart} from './components/Cart';
 import {WishList} from './components/wishlist';
 import {ProductListing} from './components/productlisting';
-import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
+import {ProductDetails} from './components/ProductDetails'
 
 function App() {
   return (
@@ -11,11 +12,12 @@ function App() {
      
       <Router>
       <NavBar/>
-      <Switch>
-      <Route path="/" exact component={ProductListing}/>
-      <Route path="/cart" exact component={Cart} />
-      <Route path="/wishlist" exact component={WishList}/>
-      </Switch>
+      <Routes>
+      <Route path="/"  element={<ProductListing/>}/>
+      <Route path="/cart"  element={<Cart/>} />
+      <Route path="/wishlist"  element={<WishList/>}/>
+      <Route path="product/:productId" element={<ProductDetails/>}/>
+      </Routes>
       </Router>
 
     </div>

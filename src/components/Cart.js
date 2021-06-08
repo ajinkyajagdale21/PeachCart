@@ -6,14 +6,14 @@ export const Cart=()=>{
     
     return(
         <div>
-            { state.cart.map((product)=>
+            {state.cart.length===0?<h1>Cart is empty</h1>: state.cart.map((product)=>
                 <div className="product-card" key={product.id}>
             <div className="thumbnail" >
                 <img className="product-card-img" src={product.image} alt="product"/>
             </div>
             <p>{product.productName}</p>
             <p>$ {product.price} </p>
-            <p>{product.rating}</p>
+            <p>{product.ratings}<i className="fas fa-star"></i></p>
             <button className="danger button" onClick={()=>dispatch({type:"DEC_QTY",payload:product.id})}>-</button>
             {product.qty}
             <button className="success button" onClick={()=>dispatch({type:"INC_QTY",payload:product.id})}>+</button>
