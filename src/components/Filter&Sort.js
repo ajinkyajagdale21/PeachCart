@@ -1,16 +1,18 @@
 import React from 'react';
+import { useData } from '../dataContext';
 
 export const FilterAndSort=()=>{
+    const {state:{sortBy,includeInStock,fastDelivery,isRated,isPriced},dispatch} =useData();
     return(
         <div className="filter-and-sort">
            <div>
                <p>CLEAR FILTERS</p>
            </div>
            <label className="labels">
-                <input type="radio" name="sort"  /> Price :- LOW TO HIGH
+                <input type="radio" name="sort" checked={sortBy && sortBy ==="LOW_TO_HIGH"} onChange={()=>dispatch({type:"SORT",payload:"LOW_TO_HIGH"})} /> Price :- LOW TO HIGH
            </label>
            <label className="labels">
-               <input type="radio" name="sort"/> Price :- HIGH TO LOW
+               <input type="radio" name="sort" checked={sortBy && sortBy==="HIGH_TO_LOW"} onChange={()=>dispatch({type:"SORT",payload:"HIGH_TO_LOW"})}/> Price :- HIGH TO LOW
            </label>
            <label className="labels">
                <input type="checkbox" /> Include Out Of Stock

@@ -1,21 +1,27 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { useData } from '../dataContext';
 import {Link} from 'react-router-dom';
 
-export const ProductCard=({...product})=>{
-    const {dispatch}=useData();
-    const [AddToCartbtnClicked,setAddToCartbtnClicked]=useState(false)
-    const [AddToWishlistbtnClicked,setAddTowishlistbtnClicked]=useState(false)
-   
+
+export const ProductCard=({product})=>{
+  
+    const {state,dispatch}=useData();
     const addToCartClicked=()=>{
         dispatch({type: "ADD_TO_CART",payload:product})
-        setAddToCartbtnClicked(true)
+        
     }
     const addToWishlistClicked=()=>{
         dispatch({type: "ADD_TO_WISHLIST",payload:product})
-        setAddTowishlistbtnClicked(true);
+        
     }
-    
+    const isCartEmpty=(ProdId)=>{
+       const foundProduct= state.cart.find(product=>product.id===ProdId)
+      return foundProduct?true:false;  
+      }   
+      const isWishListEmpty=(ProdId)=>{
+        const foundProduct= state.wishlist.find(product=>product.id===ProdId)
+       return foundProduct?true:false;  
+       }  
     return(
         <div className="product-card" key={product.id}>
             <div className="thumbnail" >
@@ -24,8 +30,8 @@ export const ProductCard=({...product})=>{
             <p>{product.productName}</p>
             <p>$ {product.price} </p>
             <p>{product.ratings}<i className="fas fa-star"></i></p>
-           {AddToCartbtnClicked?<Link to ="/cart"><button className="primary button">Go To Cart</button></Link>:<button className="primary button" onClick={addToCartClicked}>Add to cart</button>}
-            {AddToWishlistbtnClicked?<Link to ="/wishlist"><button className="primary button">Go To WishList</button></Link>:<button className="primary button" onClick={addToWishlistClicked}>Add to wishlist</button>}
+           {isCartEmpty(product.id)?<Link to ="/cart"><button className="primary button">Go To Cart</button></Link>:<button className="primary button" onClick={addToCartClicked}>Add to cart</button>}
+            {isWishListEmpty(product.id)?<Link to ="/wishlist"><button className="primary button">Go To WishList</button></Link>:<button className="primary button" onClick={addToWishlistClicked}>Add to wishlist</button>}
             <button className="primary button"><Link to={`/product/${product.id}`}> View Details </Link></button>
         </div>
     )

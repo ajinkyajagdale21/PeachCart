@@ -12,7 +12,7 @@ export const ProductDetails=()=>{
      }
     const product= getProductDetails(state.data,productId)
     return(
-        <div>
+        <div className="product-card-top">
             <div className="product-card">
             <div className="thumbnail" >
                 <img className="product-card-img" src={product.image} alt="product"/>
