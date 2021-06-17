@@ -15,6 +15,13 @@ export const DataReducer=(state,action)=>{
         case "TOGGLE_DELIVERY":return {...state,fastDelivery:!state.fastDelivery};
         case "RATED_DATA": return{...state,isRated:action.payload,rating:action.payload}
         case "PRICE_FILTER": return{...state,isPriced:action.payload,price:action.payload}
+        case "CLEAR_FILTERS":return {...state, sortBy:null,
+            includeOutOfStock:false,
+            fastDelivery:false,
+            isRated:null,
+            rating:0,
+            isPriced:null,
+            price:0,}
         default:
              return {state}
     }

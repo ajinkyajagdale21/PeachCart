@@ -6,7 +6,7 @@ export const FilterAndSort=()=>{
     return(
         <div className="filter-and-sort">
            <div>
-               <p>CLEAR FILTERS</p>
+               <button className="primary button" onClick={()=>dispatch({type:"CLEAR_FILTERS"})}>CLEAR FILTERS </button>
            </div>
            <label className="labels">
                 <input type="radio" name="sort" checked={sortBy && sortBy ==="LOW_TO_HIGH"} onChange={()=>dispatch({type:"SORT",payload:"LOW_TO_HIGH"})} /> Price :- LOW TO HIGH
@@ -32,16 +32,16 @@ export const FilterAndSort=()=>{
            </label>
            <h4>PRICES</h4>
            <label className="labels">
-               <input type="checkbox" checked={isPriced && isPriced===700} onChange={()=>dispatch({type:"PRICE_FILTER",payload:700})}/> 700 and ABOVE
+               <input type="checkbox" checked={(isPriced && isPriced===700)||false} onChange={()=>dispatch({type:"PRICE_FILTER",payload:700})}/> 700 and ABOVE
            </label>
            <label className="labels">
-               <input type="checkbox" checked={isPriced && isPriced===600} onChange={()=>dispatch({type:"PRICE_FILTER",payload:600})}/> 600 and ABOVE
+               <input type="checkbox" checked={(isPriced && isPriced===600)||false} onChange={()=>dispatch({type:"PRICE_FILTER",payload:600})}/> 600 and ABOVE
            </label>
            <label className="labels">
-               <input type="checkbox" checked={isPriced && isPriced===500} onChange={()=>dispatch({type:"PRICE_FILTER",payload:500})}/> 500 and ABOVE
+               <input type="checkbox" checked={(isPriced && isPriced===500)||false} onChange={()=>dispatch({type:"PRICE_FILTER",payload:500})}/> 500 and ABOVE
            </label>
            <label className="labels">
-               <input type="checkbox" checked={isPriced && isPriced===400}  onChange={()=>dispatch({type:"PRICE_FILTER",payload:400})}/> 400 and ABOVE
+               <input type="checkbox" checked={(isPriced && isPriced===400)||false}  onChange={()=>dispatch({type:"PRICE_FILTER",payload:400})}/> 400 and ABOVE
            </label>
         </div>
     )

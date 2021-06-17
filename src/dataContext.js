@@ -48,7 +48,7 @@ const initialState={
     const sortedData=sortData(state.data,state.sortBy)
     const filteredData=filterData(sortedData,{includeOutOfStock:state.includeOutOfStock,fastDeliveryOnly:state.fastDelivery})
     const ratedData=rateData(filteredData,state.isRated,state.rating)
-    const pricedFilter= priceFilter(ratedData,state.isPriced,state.rating)
+    const pricedFilter= priceFilter(ratedData,state.isPriced,state.price)
     useEffect(() => {
         
         (async function() {
