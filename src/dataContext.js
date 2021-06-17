@@ -9,10 +9,12 @@ const initialState={
     cart:[],
     wishlist:[],
     sortBy:null,
-    includeInStock:false,
+    includeOutOfStock:false,
     fastDelivery:false,
     isRated:null,
+    rating:0,
     isPriced:null,
+    price:0
 }
   
   const sortData=(data,sortBy)=>{
@@ -24,12 +26,29 @@ const initialState={
     }
     return data;
   }
-
-export const DataProvider=({children})=>{
+  const filterData = (data , {includeOutOfStock , fastDeliveryOnly}) => {
+    return data.filter(({fastDelivery}) => fastDeliveryOnly ? fastDelivery : true).filter(({inStock}) => includeOutOfStock ? true : inStock)
+  }
+  const rateData=(data,isRated,rating)=>{
+    if(isRated){
+        return data.filter(item=>item.ratings>=rating)
+        }
+        return data;
+    }
+   const priceFilter=(data,isPriced,price)=>{
+       if(isPriced){
+           return data.filter(item=>item.price>=price)
+       }
+       return data;
+   }
+    export const DataProvider=({children})=>{
     
     const [state, dispatch] = useReducer(DataReducer, initialState)
     const [loader,setLoader]=useState(false);
     const sortedData=sortData(state.data,state.sortBy)
+    const filteredData=filterData(sortedData,{includeOutOfStock:state.includeOutOfStock,fastDeliveryOnly:state.fastDelivery})
+    const ratedData=rateData(filteredData,state.isRated,state.rating)
+    const pricedFilter= priceFilter(ratedData,state.isPriced,state.rating)
     useEffect(() => {
         
         (async function() {
@@ -47,7 +66,7 @@ export const DataProvider=({children})=>{
         }, [])
 
     return(
-        <DataContext.Provider value={{state,dispatch,loader,sortedData}}>
+        <DataContext.Provider value={{state,dispatch,loader,pricedFilter}}>
             {children}
         </DataContext.Provider>
     )}

@@ -11,6 +11,10 @@ export const DataReducer=(state,action)=>{
         case "MOVE_TO_WISHLIST": return{...state,wishlist:[...state.wishlist,action.payload],cart:state.cart.filter((item)=>item.id!==action.payload.id)}
         case "MOVE_TO_CART": return{...state,cart:[...state.cart,action.payload],wishlist:state.wishlist.filter((item)=>item.id!==action.payload.id)}
         case "SORT": return{...state,sortBy: action.payload};
+        case "TOGGLE_INVENTORY":return {...state,includeOutOfStock:!state.includeOutOfStock};
+        case "TOGGLE_DELIVERY":return {...state,fastDelivery:!state.fastDelivery};
+        case "RATED_DATA": return{...state,isRated:action.payload,rating:action.payload}
+        case "PRICE_FILTER": return{...state,isPriced:action.payload,price:action.payload}
         default:
              return {state}
     }

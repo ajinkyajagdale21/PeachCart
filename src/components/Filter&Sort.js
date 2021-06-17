@@ -2,7 +2,7 @@ import React from 'react';
 import { useData } from '../dataContext';
 
 export const FilterAndSort=()=>{
-    const {state:{sortBy,includeInStock,fastDelivery,isRated,isPriced},dispatch} =useData();
+    const {state:{sortBy,includeOutOfStock,fastDelivery,isRated,isPriced},dispatch} =useData();
     return(
         <div className="filter-and-sort">
            <div>
@@ -15,33 +15,33 @@ export const FilterAndSort=()=>{
                <input type="radio" name="sort" checked={sortBy && sortBy==="HIGH_TO_LOW"} onChange={()=>dispatch({type:"SORT",payload:"HIGH_TO_LOW"})}/> Price :- HIGH TO LOW
            </label>
            <label className="labels">
-               <input type="checkbox" /> Include Out Of Stock
+               <input type="checkbox" checked={includeOutOfStock} onChange={()=>dispatch({type:"TOGGLE_INVENTORY"})}/> Include Out Of Stock
            </label>
            <label className="labels">
-               <input type="checkbox" /> FAST DELIVERY ONLY
+               <input type="checkbox" checked={fastDelivery} onChange={()=>dispatch({type:"TOGGLE_DELIVERY"})}/> FAST DELIVERY ONLY
            </label>
            <h4>RATINGS</h4>
            <label className="labels">
-               <input type="checkbox" /> 4 and ABOVE
+               <input type="checkbox" checked={isRated && isRated===4} onChange={()=>dispatch({type:"RATED_DATA",payload:4})} /> 4 and ABOVE
            </label>
            <label className="labels">
-               <input type="checkbox" /> 3 and ABOVE
+               <input type="checkbox" checked={isRated && isRated===3} onChange={()=>dispatch({type:"RATED_DATA",payload:3})}/> 3 and ABOVE
            </label>
            <label className="labels">
-               <input type="checkbox" /> 2 and ABOVE
+               <input type="checkbox" checked={isRated && isRated===2} onChange={()=>dispatch({type:"RATED_DATA",payload:2})}/> 2 and ABOVE
            </label>
            <h4>PRICES</h4>
            <label className="labels">
-               <input type="checkbox" /> 700 and ABOVE
+               <input type="checkbox" checked={isPriced && isPriced===700} onChange={()=>dispatch({type:"PRICE_FILTER",payload:700})}/> 700 and ABOVE
            </label>
            <label className="labels">
-               <input type="checkbox" /> 600 and ABOVE
+               <input type="checkbox" checked={isPriced && isPriced===600} onChange={()=>dispatch({type:"PRICE_FILTER",payload:600})}/> 600 and ABOVE
            </label>
            <label className="labels">
-               <input type="checkbox" /> 500 and ABOVE
+               <input type="checkbox" checked={isPriced && isPriced===500} onChange={()=>dispatch({type:"PRICE_FILTER",payload:500})}/> 500 and ABOVE
            </label>
            <label className="labels">
-               <input type="checkbox" /> 400 and ABOVE
+               <input type="checkbox" checked={isPriced && isPriced===400}  onChange={()=>dispatch({type:"PRICE_FILTER",payload:400})}/> 400 and ABOVE
            </label>
         </div>
     )

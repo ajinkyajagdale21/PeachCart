@@ -4,14 +4,14 @@ import {ProductCard} from './ProductCard'
 import { FilterAndSort } from './Filter&Sort'
 
 export const ProductListing=()=>{
-    const {loader,sortedData} =useData();
+    const {loader,pricedFilter} =useData();
     
     return(
         <div >
           <div className="product-layout">
             <FilterAndSort/>
             <div className="product-card-top">
-              {loader?<h1>Loading....</h1>:sortedData.map((product)=>
+              {loader?<h1>Loading....</h1>:pricedFilter.map((product)=>
                 <ProductCard product={product} key={product.id} />
               )}
             </div>
