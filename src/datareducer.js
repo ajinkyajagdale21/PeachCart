@@ -24,6 +24,7 @@ export const DataReducer=(state,action)=>{
             price:0,}
         default:
              return {state}
-    }
+           
+     }
 
 }
