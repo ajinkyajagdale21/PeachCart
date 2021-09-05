@@ -2,6 +2,7 @@
   position: fixed;
   top: 0;
   z-index: 100;
+  padding-bottom: 1rem;
 }
 .product-card {
   border: 1px solid black;
@@ -48,4 +49,8 @@
 }
 .labels {
   padding: 0.2rem 0rem;
+}
+.sign-up {
+  text-align: center;
+  margin-top: 6rem;
 }

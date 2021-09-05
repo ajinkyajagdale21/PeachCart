@@ -21,6 +21,11 @@ export const NavBar=()=>{
                         <i className="fa-2x fas fa-heart link" ></i>
                     </li>
                     </Link>
+                    <Link to = './signup'>
+                        <li className="display-inline">
+                            <i className="fa-2x fas fa-user link"></i>
+                        </li>
+                    </Link>
                 </ul> 
             </nav>
         </div>
