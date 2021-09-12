@@ -51,6 +51,17 @@
   padding: 0.2rem 0rem;
 }
 .sign-up {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-top: 6rem;
+}
+.input-container {
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+.login {
+  margin-top: 6rem;
+  text-align: center;
 }
