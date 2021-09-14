@@ -8,7 +8,7 @@ export const ProductDetails=()=>{
     const {state}=useData();
 
     const getProductDetails=(products,productId)=>{
-        return products.find((product)=>product.id===productId)
+        return products.find((product)=>product._id===productId)
      }
     const product= getProductDetails(state.data,productId)
     return(

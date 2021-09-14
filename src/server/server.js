@@ -1,3 +1,4 @@
+/* 
 import {createServer , Model , RestSerializer} from 'miragejs'
  import faker from 'faker';
 
@@ -33,3 +34,4 @@ import {createServer , Model , RestSerializer} from 'miragejs'
          }
      })
  }
+ */

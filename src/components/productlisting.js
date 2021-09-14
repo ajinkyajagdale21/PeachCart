@@ -12,7 +12,7 @@ export const ProductListing=()=>{
             <FilterAndSort/>
             <div className="product-card-top">
               {loader?<h1>Loading....</h1>:pricedFilter.map((product)=>
-                <ProductCard product={product} key={product.id} />
+                <ProductCard product={product} key={product._id} />
               )}
             </div>
          </div>
