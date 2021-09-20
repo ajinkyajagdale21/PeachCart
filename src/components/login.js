@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {Visibility,VisibilityOff} from '@material-ui/icons';
 import { validation } from '../util';
-import {Link} from 'react-router-dom';
+import {Link,useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../authContext';
 import { setupAuthHeaderForServiceCalls } from '../util';
@@ -12,6 +12,8 @@ export const Login=()=>{
     const [showPassword,setShowPassword] = useState(false);
     const [error, setError] = useState({ emailError: "", passwordError: "" });
     const {authDispatch}= useAuth();
+    const navigate = useNavigate();
+    const {state}= useLocation
     const loginSubmitHandler=async(e)=>{
         e.preventDefault();
     if (validation(email, password, setError)) {
@@ -21,6 +23,7 @@ export const Login=()=>{
               authDispatch({type:'LOGIN',payload: {name,token,userId}})
               localStorage?.setItem("userDetails",JSON.stringify({name,token,userId,login:true}))
               setupAuthHeaderForServiceCalls(token);
+              navigate(state?.from ? state?.from : "/")
             }            
         }
         catch(error){
