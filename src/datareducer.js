@@ -2,6 +2,8 @@ export const DataReducer=(state,action)=>{
  
     switch(action.type){
         case "DATA": return {...state,data:action.payload}; 
+        case "LOAD_CART": return {...state,cart:action.payload};
+        case "LOAD_WISHLIST": return {...state,wishlist:action.payload};
         case "ADD_TO_CART" :return {...state,cart:[...state.cart,{...action.payload,qty:1}]};
         case "ADD_TO_WISHLIST": return{...state,wishlist:[...state.wishlist,action.payload]}
         case "INC_QTY": return{...state,cart:state.cart.map((item)=>item.id===action.payload?{...item,qty:item.qty+1}:item)};

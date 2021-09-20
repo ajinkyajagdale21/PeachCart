@@ -1,8 +1,24 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import { useAuth } from '../authContext';
 import { useData } from '../dataContext';
+import axios from 'axios';
 
 export const WishList=()=>{
     const {state,dispatch}=useData();
+    const {state:{userId}}=useAuth();
+    
+    useEffect(() => {
+     (async function(){
+        try{ 
+            const {data:{wishlist}}= await axios.get(`https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}`)
+            dispatch({type:"LOAD_WISHLIST",payload:wishlist})
+        }
+        catch(error){
+            console.log(error)
+        } 
+     })()    
+        
+    },[dispatch,userId])
     return(
         <div className="product-card-top">
             {state.wishlist.length===0?<h1>WishList is empty</h1>:state.wishlist.map((product)=>

@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useData } from '../dataContext';
+import axios from 'axios';
+import { useAuth } from '../authContext';
 
 export const Cart=()=>{
     const {state,dispatch} = useData();
+    const {state:{userId}} = useAuth();
+    useEffect(()=>{
+        (async function(){
+
+          try{
+           const {data:{cart}}= await axios.get(`https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}`)
+           dispatch({type:"LOAD_CART",payload:cart})
+          }
+          catch(error){
+              console.log(error)
+          }
+        })()
+    },[dispatch,userId])
     
     return(
         <div className="product-card-top">
