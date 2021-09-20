@@ -7,6 +7,8 @@ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import {ProductDetails} from './components/ProductDetails'
 import {SignUp} from './components/signup'
 import {Login} from './components/login'
+import {PrivateRoute} from './util';
+import {User} from './components/user';
 
 function App() {
   return (
@@ -16,11 +18,13 @@ function App() {
       <NavBar/>
       <Routes>
       <Route path="/"  element={<ProductListing/>}/>
-      <Route path="/cart"  element={<Cart/>} />
-      <Route path="/wishlist"  element={<WishList/>}/>
+      <PrivateRoute path="/cart"  element={<Cart/>} />
+      <PrivateRoute path="/wishlist"  element={<WishList/>}/>
       <Route path="product/:productId" element={<ProductDetails/>}/>
       <Route path='/signup' element={<SignUp/>} />
       <Route path="/login" element={<Login/>}/>
+      <Route path="/user" element={<User/>}/>
+
       </Routes>
       </Router>
 

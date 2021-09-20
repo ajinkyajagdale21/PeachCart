@@ -54,7 +54,7 @@ const initialState={
         (async function() {
             try{
                 setLoader(true);
-                const {data:{products}}= await axios.get('https://afternoon-escarpment-40154.herokuapp.com/products')
+                const {data:{products}}= await axios.get(`https://afternoon-escarpment-40154.herokuapp.com/products`)
                 console.log(products);
                setLoader(false);
                dispatch({type:"DATA",payload:products})

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { DataProvider } from './dataContext';
+import { AuthProvider } from './authContext';
 import reportWebVitals from './reportWebVitals';
 //import createMockServer from './server/server';
 
@@ -9,7 +10,9 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
     <DataProvider>
+    <AuthProvider>
     <App />
+    </AuthProvider>
     </DataProvider>
   </React.StrictMode>,
   document.getElementById('root')
