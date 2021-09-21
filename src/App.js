@@ -9,6 +9,7 @@ import {SignUp} from './components/signup'
 import {Login} from './components/login'
 import {PrivateRoute} from './util';
 import {User} from './components/user';
+import {Sidebar} from './components/Sidebar'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
      
       <Router>
       <NavBar/>
+      <Sidebar/>
       <Routes>
       <Route path="/"  element={<ProductListing/>}/>
       <PrivateRoute path="/cart"  element={<Cart/>} />
