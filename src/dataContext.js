@@ -45,6 +45,7 @@ const initialState={
     
     const [state, dispatch] = useReducer(DataReducer, initialState)
     const [loader,setLoader]=useState(false);
+    const [toggleSidebar,setToggleSideBar]= useState(false);
     const sortedData=sortData(state.data,state.sortBy)
     const filteredData=filterData(sortedData,{includeOutOfStock:state.includeOutOfStock,fastDeliveryOnly:state.fastDelivery})
     const ratedData=rateData(filteredData,state.isRated,state.rating)
@@ -65,7 +66,7 @@ const initialState={
         }, [])
 
     return(
-        <DataContext.Provider value={{state,dispatch,loader,pricedFilter}}>
+        <DataContext.Provider value={{state,dispatch,loader,pricedFilter,toggleSidebar,setToggleSideBar}}>
             {children}
         </DataContext.Provider>
     )}

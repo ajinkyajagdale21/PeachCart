@@ -1,11 +1,12 @@
 import React from 'react';
 import { useData } from '../dataContext';
 
-export const FilterAndSort=()=>{
+export const Sidebar=()=>{
     const {state:{sortBy,includeOutOfStock,fastDelivery,isRated,isPriced},dispatch} =useData();
+    const {toggleSidebar} = useData();
     return(
 
-        <div className="filter-and-sort mob">
+        <div className={`sidebar ${toggleSidebar?"show":"hide"}`}>
            <div>
                <button className="primary button" onClick={()=>dispatch({type:"CLEAR_FILTERS"})}>CLEAR FILTERS </button>
            </div>

@@ -47,7 +47,7 @@ export const WishList=()=>{
     return(
         <div className="product-card-top">
             {state.wishlist.length===0?<h1>WishList is empty</h1>:state.wishlist.map((product)=>
-            <div className="product-card" key={product.id}>
+            <div className="product-card" key={product._id}>
             <div className="thumbnail" >
                 <img className="product-card-img" src={product.image} alt="product"/>
             </div>

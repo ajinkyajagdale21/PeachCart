@@ -76,7 +76,7 @@ export const Cart=()=>{
     return(
         <div className="product-card-top">
             {state.cart.length===0?<h1>Cart is empty</h1>: state.cart.map((product)=>
-                <div className="product-card" key={product.id}>
+                <div className="product-card" key={product._id}>
             <div className="thumbnail" >
                 <img className="product-card-img" src={product.image} alt="product"/>
             </div>

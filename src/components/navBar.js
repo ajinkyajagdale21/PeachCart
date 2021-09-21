@@ -1,9 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { useAuth } from '../authContext';
+import { useData } from '../dataContext';
 
 export const NavBar=()=>{
     const {state:{login}}=useAuth();
+    const {setToggleSideBar}= useData();
     return(
         <div>
             <nav className="navigation">
@@ -11,7 +13,7 @@ export const NavBar=()=>{
                 <Link to = "./">
                 <div className="brand-title link">PeachCart</div>
                 </Link>
-                </div>
+                </div>            
                 <ul className="list-non-bullet nav-pills"> 
                     <li className="display-inline">
                     <Link to = "./cart">   
@@ -37,6 +39,10 @@ export const NavBar=()=>{
                         </li>
                     </Link>
                     }
+                    <li onClick={()=>setToggleSideBar(prev=>!prev)} className="display-inline">
+                        <i className="fa-2x fas fa-bars ham-icon"></i>
+                    </li>
+                    
                 </ul> 
             </nav>
         </div>
