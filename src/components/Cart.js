@@ -46,7 +46,32 @@ export const Cart=()=>{
             console.log(error)
            }
        }
-       
+    }
+    const removeFromCart=async(prodID)=>{
+        if(token){
+            try{
+                const {data:{success}}= await axios.delete(`https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}/${prodID}`)
+               if(success){
+                    dispatch({type:"REMOVE_FROM_CART",payload:prodID})
+                }
+                
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
+    }
+    const moveToWishlist=async(prodID)=>{
+        try{
+            const product= state.cart.find(item=>item._id===prodID)
+            await axios.delete(`https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}/${prodID}`)
+            await axios.post(`https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}`,{productId:prodID})
+            dispatch({type:"MOVE_TO_WISHLIST",payload:product})
+         }
+        catch(error){
+            console.log(error)
+        }
+        
     }
     return(
         <div className="product-card-top">
@@ -65,8 +90,8 @@ export const Cart=()=>{
                     <button className="success button" onClick={()=>increaseQuantity(product._id)}>+</button>
                 </div>
                 <div className="button-side">
-                    <button className="danger button" onClick={()=>dispatch({type:"REMOVE_FROM_CART",payload:product.id})}>Remove from Cart</button>
-                    <button className="success button" onClick={()=>dispatch({type:"MOVE_TO_WISHLIST",payload:product})}>MOVE TO WISHLIST</button>
+                    <button className="danger button" onClick={()=>removeFromCart(product._id)}>Remove from Cart</button>
+                    <button className="success button" onClick={()=>moveToWishlist(product._id)}>MOVE TO WISHLIST</button>
                 </div>
             </div>       
         </div>

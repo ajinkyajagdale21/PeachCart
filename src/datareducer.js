@@ -8,10 +8,10 @@ export const DataReducer=(state,action)=>{
         case "ADD_TO_WISHLIST": return{...state,wishlist:[...state.wishlist,action.payload]}
         case "INC_QTY": return{...state,cart:state.cart.map((item)=>item._id===action.payload?{...item,quantity:item.quantity+1}:item)};
         case "DEC_QTY": return {...state,cart:state.cart.map((item)=>item._id===action.payload?{...item,quantity:item.quantity-1}:item).filter((item)=>item.quantity!==0)};
-        case "REMOVE_FROM_CART": return{...state,cart:state.cart.filter((item)=>item.id!==action.payload)}
-        case "REMOVE_FROM_WISHLIST": return{...state,wishlist:state.wishlist.filter((item)=>item.id!==action.payload)}
-        case "MOVE_TO_WISHLIST": return{...state,wishlist:[...state.wishlist,action.payload],cart:state.cart.filter((item)=>item.id!==action.payload.id)}
-        case "MOVE_TO_CART": return{...state,cart:[...state.cart,action.payload],wishlist:state.wishlist.filter((item)=>item.id!==action.payload.id)}
+        case "REMOVE_FROM_CART": return{...state,cart:state.cart.filter((item)=>item._id!==action.payload)}
+        case "REMOVE_FROM_WISHLIST": return{...state,wishlist:state.wishlist.filter((item)=>item._id!==action.payload)}
+        case "MOVE_TO_WISHLIST": return{...state,wishlist:[...state.wishlist,action.payload],cart:state.cart.filter((item)=>item._id!==action.payload._id)}
+        case "MOVE_TO_CART": return{...state,cart:[...state.cart,action.payload],wishlist:state.wishlist.filter((item)=>item._id!==action.payload._id)}
         case "SORT": return{...state,sortBy: action.payload};
         case "TOGGLE_INVENTORY":return {...state,includeOutOfStock:!state.includeOutOfStock};
         case "TOGGLE_DELIVERY":return {...state,fastDelivery:!state.fastDelivery};
