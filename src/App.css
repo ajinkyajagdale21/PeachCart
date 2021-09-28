@@ -86,13 +86,27 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 6rem;
+  padding-top: 6rem;
+  max-width: fit-content;
+  margin: auto;
 }
 .input-container {
   padding: 0.5rem;
   margin: 0.5rem;
 }
 .login {
-  margin-top: 6rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 6rem;
+  max-width: fit-content;
+  margin: auto;
+}
+.text-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: inherit;
+  margin-left: 1.5rem;
 }

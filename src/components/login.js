@@ -34,7 +34,6 @@ export const Login=()=>{
     return(
         <form onSubmit={loginSubmitHandler} className="login">
             <h1>Login</h1>
-            <div>
             <input 
             type="text"
             className="input-container"
@@ -43,8 +42,7 @@ export const Login=()=>{
             onChange={(e)=>setEmail(e.target.value)}    
             />
             <small className="error">{error.emailError}</small>
-            </div>
-            <div>
+            <div className="text-password">
             <input 
             type= {showPassword?"text":"password"}
             className="input-container"
@@ -53,8 +51,8 @@ export const Login=()=>{
             onChange={(e)=>setPassword(e.target.value)}
             />
             <span onClick={()=>setShowPassword(prev=>!prev)}>{showPassword?<Visibility/>:<VisibilityOff/>}</span>
-            <small className="error">{error.passwordError}</small>
             </div>
+            <small className="error">{error.passwordError}</small>
             <button type="submit" className="primary button">
             Log In
             </button>

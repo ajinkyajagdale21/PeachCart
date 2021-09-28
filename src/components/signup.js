@@ -55,7 +55,7 @@ export const SignUp=()=>{
                 onChange={(e)=>setUserInput(prev=>({...prev,email: e.target.value}))}    
                 />
                 <small>{error.emailError}</small>
-            <div >
+            <div className="text-password">
                 <input 
                 type={showPassword?"text":"password"}
                 className="input-container"
@@ -73,7 +73,7 @@ export const SignUp=()=>{
             </div>
                 <small>{error.passwordError}</small>
             
-            <div>
+            <div className="text-password">
                 <input 
                 type={showConfirmPassword?"text":"password"}
                 className="input-container" 
