@@ -31,7 +31,6 @@ export const SignUp=()=>{
     return(
         <form onSubmit={signUpSubmitHandler} className="sign-up">
             <h1>SIGN UP</h1>
-            <div >
                 <input
                  type="text"
                  className="input-container"
@@ -40,8 +39,6 @@ export const SignUp=()=>{
                  onChange={(e)=>setUserInput(prev=> ({...prev,firstName: e.target.value}))}          
                  />
                  <small>{error.firstNameError}</small>
-            </div>
-            <div >
                 <input 
                 type="text"
                 value={userInput.lastName}
@@ -50,8 +47,6 @@ export const SignUp=()=>{
                 onChange={(e)=>setUserInput(prev=>({...prev,lastName:e.target.value}))}
                 />
                 <small>{error.lastNameError}</small>
-            </div>
-            <div >
                 <input 
                 type="text"
                 className="input-container" 
@@ -60,7 +55,6 @@ export const SignUp=()=>{
                 onChange={(e)=>setUserInput(prev=>({...prev,email: e.target.value}))}    
                 />
                 <small>{error.emailError}</small>
-            </div>
             <div >
                 <input 
                 type={showPassword?"text":"password"}
@@ -76,9 +70,10 @@ export const SignUp=()=>{
                 >
                     {showPassword ? <VisibilityOff /> : <Visibility />}
                 </span>
-                <small>{error.passwordError}</small>
             </div>
-            <div >
+                <small>{error.passwordError}</small>
+            
+            <div>
                 <input 
                 type={showConfirmPassword?"text":"password"}
                 className="input-container" 
@@ -93,8 +88,9 @@ export const SignUp=()=>{
                 >
                     {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                 </span>
-                <small>{error.confirmPasswordError}</small>
             </div>
+                <small>{error.confirmPasswordError}</small>
+            
             <div >
                 <button type="submit" className="primary button">SignUp</button>
             </div>

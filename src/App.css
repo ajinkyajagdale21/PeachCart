@@ -4,8 +4,11 @@
   z-index: 100;
   padding-bottom: 1rem;
 }
+ul {
+  margin-right: 1.5rem;
+}
 .ham-icon {
-  padding-right: 3rem;
+  padding-right: 5rem;
 }
 .product-card {
   border: 1px solid black;
@@ -41,6 +44,9 @@
 }
 .hide {
   left: -1000px;
+}
+.fas {
+  padding: 0 1.5rem 0 0;
 }
 @media screen and (min-width: 769px) {
   .product-layout {
