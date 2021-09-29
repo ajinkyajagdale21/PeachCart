@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {Visibility,VisibilityOff} from '@material-ui/icons';
 import { signUpValidation } from '../util';
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
+import axios from 'axios';
 
 export const SignUp=()=>{
-    
+    const navigate = useNavigate();
      const [userInput,setUserInput] = useState({
          firstName:"",
          lastName:"",
@@ -22,10 +23,23 @@ export const SignUp=()=>{
         confirmPasswordError: "",
       });
     
-    const signUpSubmitHandler=(e)=>{
+    const signUpSubmitHandler=async(e)=>{
         e.preventDefault();
         if (signUpValidation(userInput, setError)) {
-
+            try{
+                const {data:{success}}= await axios.post(`https://afternoon-escarpment-40154.herokuapp.com/auth/signup`,{
+                    firstName: userInput?.firstName,
+                    lastName:userInput?.lastName,
+                    email:userInput?.email,
+                    password:userInput?.password
+                })
+                if(success){
+                    navigate('/login')
+                }
+            }
+            catch(error){
+                console.log("Didn't Signed Up Please try again!!",error)
+            }
         }
     }
     return(
