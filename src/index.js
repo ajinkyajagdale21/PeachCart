@@ -1,21 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { DataProvider } from './dataContext';
-import { AuthProvider } from './authContext';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+import { DataProvider } from "./dataContext";
+import { AuthProvider } from "./authContext";
+import reportWebVitals from "./reportWebVitals";
+
 //import createMockServer from './server/server';
 
 //createMockServer();
 ReactDOM.render(
   <React.StrictMode>
     <DataProvider>
-    <AuthProvider>
-    <App />
-    </AuthProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </DataProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
