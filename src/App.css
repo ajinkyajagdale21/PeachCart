@@ -1,8 +1,15 @@
+body{
+  background-color: #FDFBFC;
+  padding: 0.5rem;
+}
 .navigation {
   position: fixed;
   top: 0;
   z-index: 100;
-  padding-bottom: 1rem;
+  padding-bottom: 5rem; 
+  background-color: white;
+  box-shadow: 5px 5px #F7F2F2;
+
 }
 ul {
   margin-right: 1.5rem;
@@ -11,14 +18,11 @@ ul {
   padding-right: 5rem;
 }
 .product-card {
-  border: 1px solid black;
-  padding: 1rem 0rem;
-  margin: 1rem 1rem;
-  text-align: center;
+  margin: 0.5rem 0.3rem ;
   float: left;
 }
 .product-card-top {
-  margin-top: 5rem;
+  margin-top: 6rem;
 }
 .product-card-img {
   height: 10rem;
@@ -30,8 +34,8 @@ ul {
 .sidebar {
   background-color: peachpuff;
   position: fixed;
-  width: 200px;
-  height: 95%;
+  width: 80%;
+  height: 100%;
   top: 0;
   z-index: 500;
   margin-top: 0rem;
@@ -43,10 +47,16 @@ ul {
   left: 0;
 }
 .hide {
-  left: -1000px;
+  left: -2000px;
 }
 .fas {
   padding: 0 1.5rem 0 0;
+}
+.btn{
+  margin: 0.2rem;
+}
+.brand{
+  padding-bottom: 0.5rem;
 }
 @media screen and (min-width: 769px) {
   .product-layout {

@@ -1,63 +1,107 @@
-import React,{useEffect} from 'react';
-import { useAuth } from '../authContext';
-import { useData } from '../dataContext';
-import axios from 'axios';
+import React, { useEffect } from "react";
+import { useAuth } from "../authContext";
+import { useData } from "../dataContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-export const WishList=()=>{
-    const {state,dispatch}=useData();
-    const {state:{userId,token}}=useAuth();
-    
-    useEffect(() => {
-     (async function(){
-        try{ 
-            const {data:{wishlist}}= await axios.get(`https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}`)
-            dispatch({type:"LOAD_WISHLIST",payload:wishlist})
+export const WishList = () => {
+  const { state, dispatch } = useData();
+  const {
+    state: { userId, token },
+  } = useAuth();
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const {
+          data: { wishlist },
+        } = await axios.get(
+          `https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}`
+        );
+        dispatch({ type: "LOAD_WISHLIST", payload: wishlist });
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, [dispatch, userId]);
+
+  async function removeFromWishlist(prodID) {
+    if (token) {
+      try {
+        const {
+          data: { success },
+        } = await axios.delete(
+          `https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}/${prodID}`
+        );
+        if (success) {
+          dispatch({ type: "REMOVE_FROM_WISHLIST", payload: prodID });
+          toast.success("item removed from wishlist");
         }
-        catch(error){
-            console.log(error)
-        } 
-     })()    
-    },[dispatch,userId])
-    
-    async function removeFromWishlist(prodID){
-        if(token){
-           try{
-               const {data:{success}}= await axios.delete(`https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}/${prodID}`)
-              if(success){
-               dispatch({type:"REMOVE_FROM_WISHLIST",payload:prodID})               
-              }
-           }
-           catch(error){
-               console.log({message:error.message})
-           }
-        }
+      } catch (error) {
+        console.error({ message: error.message });
+      }
     }
-    const moveToCart=async(prodID)=>{
-        try{
-            const product= state.wishlist.find(item=>item._id===prodID)
-            await axios.delete(`https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}/${prodID}`)
-            await axios.post(`https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}`,{productId:prodID})
-            dispatch({type:"MOVE_TO_CART",payload:product})
-         }
-        catch(error){
-            console.log(error)
-        }
-        
+  }
+  const moveToCart = async (prodID) => {
+    try {
+      const product = state.wishlist.find((item) => item._id === prodID);
+      await axios.delete(
+        `https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}/${prodID}`
+      );
+      await axios.post(
+        `https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}`,
+        { productId: prodID }
+      );
+      dispatch({ type: "MOVE_TO_CART", payload: product });
+      toast.success("item moved to cart");
+    } catch (error) {
+      console.error(error);
     }
-    return(
-        <div className="product-card-top">
-            {state.wishlist.length===0?<h1>WishList is empty</h1>:state.wishlist.map((product)=>
-            <div className="product-card" key={product._id}>
-            <div className="thumbnail" >
-                <img className="product-card-img" src={product.image} alt="product"/>
+  };
+  return (
+    <div className="product-card-top container text-center">
+      <div className="row row-cols-auto">
+        {state.wishlist.length === 0 ? (
+          <h1>WishList is empty</h1>
+        ) : (
+          state.wishlist.map((product) => (
+            <div
+              className="card col"
+              key={product._id}
+              style={{ width: "21.5rem", margin: "0.5rem" }}
+            >
+              <img className="card-img-top" src={product.image} alt="product" />
+              <div className="card-body">
+                <h5 className="card-title">{product.productName}</h5>
+                <h2
+                  className="badge text-bg-dark"
+                  style={{ margin: "0.5rem 0rem" }}
+                >
+                  Rating: {product.ratings} ⭐
+                </h2>
+                <p style={{ fontWeight: "600" }} className="card-text ">
+                  Price: ${product.price}
+                </p>
+
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => removeFromWishlist(product._id)}
+                >
+                  REMOVE FROM WISHLIST
+                </button>
+                <button
+                  className="btn btn-warning btn-sm"
+                  onClick={() => {
+                    moveToCart(product._id);
+                  }}
+                >
+                  MOVE TO CART
+                </button>
+              </div>
             </div>
-            <p>{product.productName}</p>
-            <p>$ {product.price} </p>
-            <p>{product.ratings}<i className="fas fa-star"></i></p>
-            <button className="danger button" onClick={()=>removeFromWishlist(product._id)}>REMOVE FROM WISHLIST</button>
-            <button className="success button" onClick={()=>{moveToCart(product._id)}}>MOVE TO CART</button>
-        </div>)}
-        </div>
-    )
-}
-
+          ))
+        )}
+      </div>
+    </div>
+  );
+};
