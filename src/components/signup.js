@@ -44,7 +44,7 @@ export const SignUp = () => {
           toast.success("Signed Up succesfully");
         }
       } catch (error) {
-        toast.error("Didn't Signed Up Please try again!!", error);
+        toast.error("Didn't Signed Up Please try again!!");
       }
     }
   };

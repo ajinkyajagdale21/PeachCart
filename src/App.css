@@ -18,7 +18,7 @@ ul {
   padding-right: 5rem;
 }
 .product-card {
-  margin: 0.5rem 0.3rem ;
+  margin: 0.5rem 0.3rem;
   float: left;
 }
 .product-card-top {
@@ -63,6 +63,7 @@ ul {
     display: grid;
     grid-template-columns: 1fr 3fr;
     margin-bottom: 0;
+  
   }
 
   .filter-and-sort {

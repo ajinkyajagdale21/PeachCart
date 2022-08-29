@@ -37,7 +37,7 @@ export const Login = () => {
           toast.success("logged in succesfully");
         }
       } catch (error) {
-        console.error(error.response);
+        toast.error("please enter correct credentials");
       }
     }
   };

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../authContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { truncateString } from "../util";
 
 export const ProductCard = ({ product }) => {
   const { state, dispatch } = useData();
@@ -60,7 +61,9 @@ export const ProductCard = ({ product }) => {
     >
       <img className="card-img-top" src={product.image} alt="product" />
       <div className="card-body">
-        <h5 className="card-title">{product.productName}</h5>
+        <h5 className="card-title">
+          {truncateString(product.productName, 21)}
+        </h5>
 
         <h2 className="badge text-bg-dark" style={{ margin: "0.5rem 0rem" }}>
           Rating: {product.ratings} ⭐
