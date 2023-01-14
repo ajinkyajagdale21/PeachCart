@@ -18,7 +18,7 @@ export const ProductCard = ({ product }) => {
         const {
           data: { product },
         } = await axios.post(
-          `https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}`,
+          `https://new-api-peachcart-1jnt.vercel.app/cart/${userId}`,
           { productId: prodID }
         );
         dispatch({ type: "ADD_TO_CART", payload: product });
@@ -34,7 +34,7 @@ export const ProductCard = ({ product }) => {
         const {
           data: { product },
         } = await axios.post(
-          `https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}`,
+          `https://new-api-peachcart-1jnt.vercel.app/wishlist/${userId}`,
           { productId: prodID }
         );
         dispatch({ type: "ADD_TO_WISHLIST", payload: product });

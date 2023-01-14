@@ -16,7 +16,7 @@ export const WishList = () => {
         const {
           data: { wishlist },
         } = await axios.get(
-          `https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}`
+          `https://new-api-peachcart-1jnt.vercel.app/wishlist/${userId}`
         );
         dispatch({ type: "LOAD_WISHLIST", payload: wishlist });
       } catch (error) {
@@ -31,7 +31,7 @@ export const WishList = () => {
         const {
           data: { success },
         } = await axios.delete(
-          `https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}/${prodID}`
+          `https://new-api-peachcart-1jnt.vercel.app/wishlist/${userId}/${prodID}`
         );
         if (success) {
           dispatch({ type: "REMOVE_FROM_WISHLIST", payload: prodID });
@@ -46,10 +46,10 @@ export const WishList = () => {
     try {
       const product = state.wishlist.find((item) => item._id === prodID);
       await axios.delete(
-        `https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}/${prodID}`
+        `https://new-api-peachcart-1jnt.vercel.app/wishlist/${userId}/${prodID}`
       );
       await axios.post(
-        `https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}`,
+        `https://new-api-peachcart-1jnt.vercel.app/cart/${userId}`,
         { productId: prodID }
       );
       dispatch({ type: "MOVE_TO_CART", payload: product });

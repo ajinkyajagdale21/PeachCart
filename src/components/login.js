@@ -23,7 +23,7 @@ export const Login = () => {
           data: { name, token, userId },
           status,
         } = await axios.post(
-          `https://afternoon-escarpment-40154.herokuapp.com/auth/login`,
+          `https://new-api-peachcart-1jnt.vercel.app/auth/login`,
           { email, password }
         );
         if (status === 200) {

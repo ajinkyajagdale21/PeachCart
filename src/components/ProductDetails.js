@@ -12,7 +12,7 @@ export const ProductDetails = () => {
         const {
           data: { product },
         } = await axios.get(
-          `https://afternoon-escarpment-40154.herokuapp.com/products/${productId}`
+          `https://new-api-peachcart-1jnt.vercel.app/products/${productId}`
         );
         setDetails(product);
       })();

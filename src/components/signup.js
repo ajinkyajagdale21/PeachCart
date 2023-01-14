@@ -31,7 +31,7 @@ export const SignUp = () => {
         const {
           data: { success },
         } = await axios.post(
-          `https://afternoon-escarpment-40154.herokuapp.com/auth/signup`,
+          `https://new-api-peachcart-1jnt.vercel.app/auth/signup`,
           {
             firstName: userInput?.firstName,
             lastName: userInput?.lastName,

@@ -15,7 +15,7 @@ export const Cart = () => {
         const {
           data: { cart },
         } = await axios.get(
-          `https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}`
+          `https://new-api-peachcart-1jnt.vercel.app/cart/${userId}`
         );
         dispatch({ type: "LOAD_CART", payload: cart });
       } catch (error) {
@@ -29,7 +29,7 @@ export const Cart = () => {
     if (token) {
       try {
         const decrement = await axios.post(
-          `https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}/${prodID}`,
+          `https://new-api-peachcart-1jnt.vercel.app/cart/${userId}/${prodID}`,
           { quantity: product.quantity - 1 }
         );
         if (decrement.data.success)
@@ -44,7 +44,7 @@ export const Cart = () => {
     if (token) {
       try {
         const increment = await axios.post(
-          `https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}/${prodID}`,
+          `https://new-api-peachcart-1jnt.vercel.app/cart/${userId}/${prodID}`,
           { quantity: product.quantity + 1 }
         );
         if (increment.data.success)
@@ -60,7 +60,7 @@ export const Cart = () => {
         const {
           data: { success },
         } = await axios.delete(
-          `https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}/${prodID}`
+          `https://new-api-peachcart-1jnt.vercel.app/cart/${userId}/${prodID}`
         );
         if (success) {
           dispatch({ type: "REMOVE_FROM_CART", payload: prodID });
@@ -75,10 +75,10 @@ export const Cart = () => {
     try {
       const product = state.cart.find((item) => item._id === prodID);
       await axios.delete(
-        `https://afternoon-escarpment-40154.herokuapp.com/cart/${userId}/${prodID}`
+        `https://new-api-peachcart-1jnt.vercel.app/cart/${userId}/${prodID}`
       );
       await axios.post(
-        `https://afternoon-escarpment-40154.herokuapp.com/wishlist/${userId}`,
+        `https://new-api-peachcart-1jnt.vercel.app/wishlist/${userId}`,
         { productId: prodID }
       );
       dispatch({ type: "MOVE_TO_WISHLIST", payload: product });
